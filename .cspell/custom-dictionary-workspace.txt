@@ -1,0 +1,6 @@
+# Custom Dictionary Words
+autofix
+codespell
+functool
+maxsplit
+pyright
