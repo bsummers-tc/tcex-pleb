@@ -1,4 +1,5 @@
 """TcEx Framework Module"""
+
 # standard library
 from collections.abc import Callable
 from functools import cached_property as functool_cached_property
@@ -17,7 +18,7 @@ class cached_property(functool_cached_property, Generic[R]):
 
     instances = []
 
-    def __get__(self, instance, owner=None) -> R:
+    def __get__(self, instance, owner=None) -> R:  # type: ignore
         """Override method."""
         self.instances.append(instance)
         return super().__get__(instance, owner)  # type: ignore
