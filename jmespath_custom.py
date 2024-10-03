@@ -24,26 +24,30 @@ class TcFunctions(functions.Functions):
 
     def _get_expression_key(self, expref: _Expression):
         """Return the key from the expression."""
-        match expref.expression['type']:
+        match expref.expression['type']:  # type: ignore
             case 'field':
-                return expref.expression['value']
+                return expref.expression['value']  # type: ignore
 
             case 'subexpression':
-                return expref.expression.get('children')[-1]['value']
+                return expref.expression.get('children')[-1]['value']  # type: ignore
 
             case _:
-                ex_msg = f'''Invalid expression type of {expref.expression['type']}.'''
+                ex_msg = (
+                    f'''Invalid expression type of {expref.expression['type']}.'''  # type: ignore
+                )
+
                 raise RuntimeError(ex_msg)
 
     def _update_expression_parent(self, expref: _Expression, key: str, item: dict, value: Any):
         """Return the key from the expression."""
-        match expref.expression['type']:
+        match expref.expression['type']:  # type: ignore
             case 'field':
                 item[key] = value
 
             case 'subexpression':
                 expand_item = item
-                children = expref.expression.get('children') or []
+                children = expref.expression.get('children') or []  # type: ignore
+
                 for index, child in enumerate(children):
                     child_value = child['value']
                     expand_item = expand_item[child_value]
@@ -103,8 +107,10 @@ class TcFunctions(functions.Functions):
         if not array:
             return array
 
-        key_func = self._create_key_func(expref, ['array'], 'expand2')
+        key_func = self._create_key_func(expref, ['array'], 'expand2')  # type: ignore
+
         expression_key = self._get_expression_key(expref)
+
         result = []
         for item in array:
             for key in key_func(item):
@@ -174,7 +180,8 @@ class TcFunctions(functions.Functions):
         if not array:
             return array
 
-        key_func = self._create_key_func(expref, ['null', 'string'], 'group_by')
+        key_func = self._create_key_func(expref, ['null', 'string'], 'group_by')  # type: ignore
+
         result = {}
         for item in array:
             result.setdefault(key_func(item), []).append(item)
@@ -216,7 +223,9 @@ class TcFunctions(functions.Functions):
         """
         return str(uuid.uuid5(uuid.NAMESPACE_DNS, input_))
 
-    @functions.signature({'types': ['array']}, {'types': ['null', 'string'], 'optional': True})
+    @functions.signature(
+        {'types': ['array']}, {'types': ['null', 'string'], 'optional': True}  # type: ignore
+    )
     def _func_zip(self, arrays: list[list], fill_value: str | None = None):
         """Return array after popping value at address out.
 
@@ -242,7 +251,9 @@ class TcFunctions(functions.Functions):
         return list(itertools.zip_longest(*arrays, fillvalue=fill_value))
 
     @functions.signature(
-        {'types': ['array']}, {'types': ['array']}, {'types': ['null', 'string'], 'optional': True}
+        {'types': ['array']},
+        {'types': ['array']},
+        {'types': ['null', 'string'], 'optional': True},  # type: ignore
     )
     def _func_zip_to_objects(
         self,
@@ -302,7 +313,7 @@ class TcFunctions(functions.Functions):
         for i in range(min(len(signature), len(actual))):
             allowed_types = signature[i]['types']
             if allowed_types:
-                self._type_check_single(actual[i], allowed_types, function_name)
+                self._type_check_single(actual[i], allowed_types, function_name)  # type: ignore
 
     def _validate_arguments(self, args: list, signature: tuple, function_name: str):
         """Check the provided args match the signature type, taking into account optional args."""
