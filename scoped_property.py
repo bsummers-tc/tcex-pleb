@@ -16,7 +16,7 @@ class scoped_property(Generic[T]):
     treat that function as a factory for the underlying value, and will invoke it to produce a value
     for each thread the value is requested from.
 
-    Note that this also provides a cache: each thread will re-use the value previously created
+    Note that this also provides a cache: each thread will reuse the value previously created
     for it.
     """
 
