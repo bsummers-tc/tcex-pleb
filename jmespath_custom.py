@@ -11,7 +11,8 @@ from typing import Any
 import jmespath
 from jmespath import exceptions, functions
 from jmespath.visitor import _Expression
-from tcex.util import Util
+
+from ..util import Util
 
 
 def jmespath_options() -> jmespath.Options:
