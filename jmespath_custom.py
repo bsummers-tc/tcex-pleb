@@ -11,7 +11,8 @@ from typing import Any
 import jmespath
 from jmespath import exceptions, functions
 from jmespath.visitor import _Expression
-from tcex.util import Util
+
+from ..util import Util
 
 
 def jmespath_options() -> jmespath.Options:
@@ -69,6 +70,18 @@ class TcFunctions(functions.Functions):
         }
         """
         return Util.any_to_datetime(input_).strftime(date_format)
+
+    @functions.signature({'types': ['string']}, {'types': ['string']}, {'types': ['string']})
+    def _func_replace(self, input_: str, search: str, replace: str, count: int = -1):
+        """Replace occurrences of search with replace in the input string.
+
+        Expression:
+        replace('hello world', 'world', 'there')
+
+        Output:
+        'hello there'
+        """
+        return input_.replace(search, replace, count)
 
     @functions.signature({'types': ['array']}, {'types': ['expref']})
     def _func_expand(self, array: list[dict], expref: _Expression):
