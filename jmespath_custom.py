@@ -33,9 +33,7 @@ class TcFunctions(functions.Functions):
                 return expref.expression.get('children')[-1]['value']  # type: ignore
 
             case _:
-                ex_msg = (
-                    f'''Invalid expression type of {expref.expression['type']}.'''  # type: ignore
-                )
+                ex_msg = f"""Invalid expression type of {expref.expression['type']}."""  # type: ignore
 
                 raise RuntimeError(ex_msg)
 
@@ -225,7 +223,8 @@ class TcFunctions(functions.Functions):
         return str(uuid.uuid5(uuid.NAMESPACE_DNS, input_))
 
     @functions.signature(
-        {'types': ['array']}, {'types': ['null', 'string'], 'optional': True}  # type: ignore
+        {'types': ['array']},
+        {'types': ['null', 'string'], 'optional': True},  # type: ignore
     )
     def _func_zip(self, arrays: list[list], fill_value: str | None = None):
         """Return array after popping value at address out.

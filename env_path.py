@@ -8,7 +8,6 @@ from pathlib import Path
 from typing import Any
 
 
-# pylint: disable=duplicate-bases
 class _EnvPath(type(Path()), Path):  # type: ignore
     """A stub of Path with additional attribute."""
 
@@ -43,7 +42,8 @@ class EnvPath(Path):
                 env_key = m.group(2)
 
                 if env_type != 'env':
-                    raise ValueError(f'Invalid environment type found ({env_type})')
+                    ex_msg = f'Invalid environment type found ({env_type})'
+                    raise ValueError(ex_msg)
                 env_value = os.getenv(env_key)
                 if env_value is not None:
                     string = string.replace(full_match, env_value)
@@ -51,6 +51,6 @@ class EnvPath(Path):
                 return string
 
         # convert value to Path and return original value
-        p = _EnvPath(os.path.expanduser(string))
+        p = _EnvPath(Path(string).expanduser())
         p.original_value = value
         return p

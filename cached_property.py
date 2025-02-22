@@ -3,20 +3,19 @@
 # standard library
 from collections.abc import Callable
 from functools import cached_property as functool_cached_property
-from typing import Generic, TypeVar
+from typing import ClassVar, Generic, TypeVar
 
 R = TypeVar('R')
 
 
-class cached_property(functool_cached_property, Generic[R]):
+class cached_property(functool_cached_property, Generic[R]):  # noqa: N801
     """Customized cached_property."""
 
-    # pylint: disable=useless-super-delegation
+    instances: ClassVar = []
+
     def __init__(self, func: Callable[..., R]):
         """Initialize instance properties."""
         super().__init__(func)
-
-    instances = []
 
     def __get__(self, instance, owner=None) -> R:  # type: ignore
         """Override method."""

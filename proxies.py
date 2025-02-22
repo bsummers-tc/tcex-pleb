@@ -3,7 +3,7 @@
 # standard library
 from urllib.parse import quote
 
-from ..input.field_type.sensitive import Sensitive  # type: ignore # pylint: disable=import-error
+from ..input.field_type.sensitive import Sensitive  # type: ignore
 
 
 def proxies(
@@ -21,8 +21,8 @@ def proxies(
     ::
 
         {
-            "http": "http://user:pass@10.10.1.10:3128/",
-            "https": "http://user:pass@10.10.1.10:3128/"
+            'http': 'http://user:pass@10.10.1.10:3128/',
+            'https': 'http://user:pass@10.10.1.10:3128/',
         }
     """
     _proxies = {}

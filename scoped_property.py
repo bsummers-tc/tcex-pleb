@@ -4,12 +4,12 @@
 import os
 import threading
 from collections.abc import Callable
-from typing import Any, Generic, TypeVar
+from typing import Any, ClassVar, Generic, TypeVar
 
 T = TypeVar('T')
 
 
-class scoped_property(Generic[T]):
+class scoped_property(Generic[T]):  # noqa: N801
     """Makes a value unique for each thread and also acts as a @property decorator.
 
     Essentially, a thread-and-process local value.  When used to decorate a function, will
@@ -20,7 +20,7 @@ class scoped_property(Generic[T]):
     for it.
     """
 
-    instances = []
+    instances: ClassVar = []
 
     def __init__(self, wrapped: Callable[..., T]):
         """Initialize the instance properties."""
@@ -56,18 +56,14 @@ class scoped_property(Generic[T]):
 
         # A value has *not* been created for the calling thread
         # yet, so use the factory to create a new one.
-        new_value = self._create_value(instance, self.wrapped)
-        return new_value
+        return self._create_value(instance, self.wrapped)
 
     def _create_value(self, instance, wrapped, *args, **kwargs) -> T:
         """Call the wrapped factory function to get a new value."""
-        if instance:
-            data = wrapped(instance, *args, **kwargs)
-        else:
-            data = wrapped(*args, **kwargs)
+        data = wrapped(instance, *args, **kwargs) if instance else wrapped(*args, **kwargs)
 
         # add data to threat.local
-        setattr(self.value, 'data', (os.getpid(), data, instance))
+        self.value.data = os.getpid(), data, instance
 
         return data
 
