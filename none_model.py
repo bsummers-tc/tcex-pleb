@@ -8,4 +8,4 @@ class NoneModel(metaclass=Singleton):
 
     def __getattribute__(self, _: str):
         """Return None for any attribute request."""
-        return None
+        return

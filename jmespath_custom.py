@@ -33,9 +33,7 @@ class TcFunctions(functions.Functions):
                 return expref.expression.get('children')[-1]['value']  # type: ignore
 
             case _:
-                ex_msg = (
-                    f'''Invalid expression type of {expref.expression['type']}.'''  # type: ignore
-                )
+                ex_msg = f"""Invalid expression type of {expref.expression['type']}."""  # type: ignore
 
                 raise RuntimeError(ex_msg)
 
@@ -70,18 +68,6 @@ class TcFunctions(functions.Functions):
         }
         """
         return Util.any_to_datetime(input_).strftime(date_format)
-
-    @functions.signature({'types': ['string']}, {'types': ['string']}, {'types': ['string']})
-    def _func_replace(self, input_: str, search: str, replace: str, count: int = -1):
-        """Replace occurrences of search with replace in the input string.
-
-        Expression:
-        replace('hello world', 'world', 'there')
-
-        Output:
-        'hello there'
-        """
-        return input_.replace(search, replace, count)
 
     @functions.signature({'types': ['array']}, {'types': ['expref']})
     def _func_expand(self, array: list[dict], expref: _Expression):
@@ -220,6 +206,18 @@ class TcFunctions(functions.Functions):
         """
         return [a.get(search) for a in arr]
 
+    @functions.signature({'types': ['string']}, {'types': ['string']}, {'types': ['string']})
+    def _func_replace(self, input_: str, search: str, replace: str, count: int = -1):
+        """Replace occurrences of search with replace in the input string.
+
+        Expression:
+        replace('hello world', 'world', 'there')
+
+        Output:
+        'hello there'
+        """
+        return input_.replace(search, replace, count)
+
     @functions.signature({'types': ['string']})
     def _func_uuid5(self, input_: str):
         """Return array after popping value at address out.
@@ -237,7 +235,8 @@ class TcFunctions(functions.Functions):
         return str(uuid.uuid5(uuid.NAMESPACE_DNS, input_))
 
     @functions.signature(
-        {'types': ['array']}, {'types': ['null', 'string'], 'optional': True}  # type: ignore
+        {'types': ['array']},
+        {'types': ['null', 'string'], 'optional': True},  # type: ignore
     )
     def _func_zip(self, arrays: list[list], fill_value: str | None = None):
         """Return array after popping value at address out.

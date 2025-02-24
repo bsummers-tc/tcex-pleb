@@ -23,4 +23,4 @@ class ExceptionThread(threading.Thread):
             self.exception = ex
             _logger.exception(f'Unexpected exception occurred in thread with name: {self.name}')
             # let exception logic continue as normal
-            raise ex
+            raise

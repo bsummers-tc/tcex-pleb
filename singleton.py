@@ -2,12 +2,13 @@
 
 # standard library
 import threading
+from typing import ClassVar
 
 
 class Singleton(type):
     """A singleton Metaclass"""
 
-    _instances = {}
+    _instances: ClassVar = {}
     _lock = threading.Lock()
 
     def __call__(cls, *args, **kwargs):
