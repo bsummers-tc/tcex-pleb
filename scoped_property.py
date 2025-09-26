@@ -1,6 +1,5 @@
 """Declares a scoped_property decorator."""
 
-# standard library
 import os
 import threading
 from collections.abc import Callable
