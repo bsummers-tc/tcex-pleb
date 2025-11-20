@@ -1,13 +1,11 @@
 """Custom functions for ThreatConnect Jmespath Playbook App."""
 
-# standard library
 import collections
 import itertools
 import uuid
 from copy import deepcopy
 from typing import Any
 
-# third-party
 import jmespath
 from jmespath import exceptions, functions
 from jmespath.visitor import _Expression
