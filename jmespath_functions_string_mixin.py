@@ -52,7 +52,7 @@ class StringFunctionsMixin(JmespathFunctionsBase):
         Output:
         ["Hello World!", "foo"]
         """
-        values = []
+        values: list[Any] = []
         for arg in args:
             if isinstance(arg, list):
                 values.extend(arg)
@@ -123,7 +123,7 @@ class StringFunctionsMixin(JmespathFunctionsBase):
         Output:
         ["John Doe", "Jane Smith"]
         """
-        values = []
+        values: list[Any] = []
         for arg in args:
             if isinstance(arg, list):
                 values.extend(arg)
@@ -164,7 +164,7 @@ class StringFunctionsMixin(JmespathFunctionsBase):
         Output:
         ["hello world", "foo!bar"]
         """
-        values = []
+        values: list[Any] = []
         for arg in args:
             if isinstance(arg, list):
                 values.extend(arg)
@@ -208,7 +208,7 @@ class StringFunctionsMixin(JmespathFunctionsBase):
         Output:
         ["hxxps[:]//malicious[.]example[.]com", "192[.]168[.]1[.]1"]
         """
-        values = []
+        values: list[Any] = []
         for arg in args:
             if isinstance(arg, list):
                 values.extend(arg)
@@ -249,7 +249,7 @@ class StringFunctionsMixin(JmespathFunctionsBase):
         Output:
         ["hello%20world", "foo%21bar"]
         """
-        values = []
+        values: list[Any] = []
         for arg in args:
             if isinstance(arg, list):
                 values.extend(arg)
@@ -307,7 +307,7 @@ class StringFunctionsMixin(JmespathFunctionsBase):
         Output:
         ["john", "jane"]
         """
-        values = []
+        values: list[Any] = []
         for arg in args:
             if isinstance(arg, list):
                 values.extend(arg)
@@ -366,7 +366,7 @@ class StringFunctionsMixin(JmespathFunctionsBase):
         Output:
         ["https://malicious.example.com", "192.168.1.1"]
         """
-        values = []
+        values: list[Any] = []
         for arg in args:
             if isinstance(arg, list):
                 values.extend(arg)
@@ -462,7 +462,7 @@ class StringFunctionsMixin(JmespathFunctionsBase):
 
     @functions.signature(
         {'types': ['string', 'array']},
-        {'types': ['null', 'string'], 'optional': True},  # type: ignore
+        {'types': ['null', 'string'], 'optional': True},
     )
     def _func_split(
         self, value: str | list[str], delimiter: str | None = ','
@@ -550,7 +550,7 @@ class StringFunctionsMixin(JmespathFunctionsBase):
         Output:
         ["hello", "world"]
         """
-        values = []
+        values: list[Any] = []
         for arg in args:
             if isinstance(arg, list):
                 values.extend(arg)
@@ -591,7 +591,7 @@ class StringFunctionsMixin(JmespathFunctionsBase):
         Output:
         ["JOHN", "JANE"]
         """
-        values = []
+        values: list[Any] = []
         for arg in args:
             if isinstance(arg, list):
                 values.extend(arg)

@@ -79,7 +79,7 @@ class cached_property_filesystem(Generic[R]):  # noqa: N801
         Returns:
             This descriptor instance.
         """
-        self.attr_name = func.__name__
+        self.attr_name = func.__name__  # ty: ignore[unresolved-attribute]
         self.__doc__ = func.__doc__
         self._wrapper = self._make_wrapper(func)
         return self
@@ -104,7 +104,7 @@ class cached_property_filesystem(Generic[R]):  # noqa: N801
             The cached or freshly computed value.
         """
         if instance is None:
-            return self  # type: ignore[return-value]
+            return self  # ty: ignore[invalid-return-type]
 
         return self._wrapper.__get__(instance, owner)()
 

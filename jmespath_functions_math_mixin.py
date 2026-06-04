@@ -2,6 +2,7 @@
 
 import math
 import random
+from typing import Any
 
 from jmespath import functions
 
@@ -45,7 +46,7 @@ class MathFunctionsMixin(JmespathFunctionsBase):
         Output:
         6
         """
-        values = []
+        values: list[Any] = []
         for arg in args:
             if isinstance(arg, list):
                 values.extend(arg)
@@ -116,7 +117,7 @@ class MathFunctionsMixin(JmespathFunctionsBase):
         Output:
         24
         """
-        values = []
+        values: list[Any] = []
         for arg in args:
             if isinstance(arg, list):
                 values.extend(arg)
@@ -185,7 +186,7 @@ class MathFunctionsMixin(JmespathFunctionsBase):
         Output:
         80
         """
-        values = []
+        values: list[Any] = []
         for arg in args:
             if isinstance(arg, list):
                 values.extend(arg)
@@ -224,7 +225,7 @@ class MathFunctionsMixin(JmespathFunctionsBase):
         Output:
         [9, -3, 5]
         """
-        values = []
+        values: list[Any] = []
         for arg in args:
             if isinstance(arg, list):
                 values.extend(arg)

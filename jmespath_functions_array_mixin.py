@@ -154,7 +154,7 @@ class ArrayFunctionsMixin(JmespathFunctionsBase):
     @functions.signature(
         {'types': ['array']},
         {'types': ['array']},
-        {'types': ['boolean', 'null'], 'optional': True},  # type: ignore
+        {'types': ['boolean', 'null'], 'optional': True},
     )
     def _func_difference(
         self, left: list, right: list, preserve_order: bool | None = False
@@ -368,7 +368,7 @@ class ArrayFunctionsMixin(JmespathFunctionsBase):
     @functions.signature(
         {'types': ['array']},
         {'types': ['string']},
-        {'types': ['number', 'null'], 'optional': True},  # type: ignore
+        {'types': ['number', 'null'], 'optional': True},
     )
     def _func_index_array(
         self, lst: list[dict], field: str, start: int | None = None
@@ -395,7 +395,7 @@ class ArrayFunctionsMixin(JmespathFunctionsBase):
     @functions.signature(
         {'types': ['array']},
         {'types': ['array']},
-        {'types': ['boolean', 'null'], 'optional': True},  # type: ignore
+        {'types': ['boolean', 'null'], 'optional': True},
     )
     def _func_intersect(self, left: list, right: list, preserve_order: bool | None = False) -> list:
         """Return elements common to both arrays with optional order preservation.
@@ -450,10 +450,10 @@ class ArrayFunctionsMixin(JmespathFunctionsBase):
     #     Expression:
     #     list_join(people, teams, &teamId, &id)
     #     """
-    #     left_key_func = self._create_key_func(  # type: ignore
+    #     left_key_func = self._create_key_func(
     #         left_expref, ['null', 'string', 'number'], 'list_join'
     #     )
-    #     right_key_func = self._create_key_func(  # type: ignore
+    #     right_key_func = self._create_key_func(
     #         right_expref, ['null', 'string', 'number'], 'list_join'
     #     )
     #
@@ -504,7 +504,7 @@ class ArrayFunctionsMixin(JmespathFunctionsBase):
     @functions.signature(
         {'types': ['array']},
         {'types': ['array']},
-        {'types': ['boolean', 'null'], 'optional': True},  # type: ignore
+        {'types': ['boolean', 'null'], 'optional': True},
     )
     def _func_symmetric_difference(
         self, left: list, right: list, preserve_order: bool | None = False
@@ -545,7 +545,7 @@ class ArrayFunctionsMixin(JmespathFunctionsBase):
     @functions.signature(
         {'types': ['array']},
         {'types': ['array']},
-        {'types': ['boolean', 'null'], 'optional': True},  # type: ignore
+        {'types': ['boolean', 'null'], 'optional': True},
     )
     def _func_union(self, left: list, right: list, preserve_order: bool | None = False) -> list:
         """Return all unique elements from both arrays.
@@ -577,7 +577,7 @@ class ArrayFunctionsMixin(JmespathFunctionsBase):
 
     @functions.signature(
         {'types': ['array']},
-        {'types': ['null', 'string'], 'optional': True},  # type: ignore
+        {'types': ['null', 'string'], 'optional': True},
     )
     def _func_zip(self, arrays: list[list], fill_value: str | None = None) -> list[tuple]:
         """Transpose an array of arrays into a list of tuples, padding short arrays with fill_value.
@@ -624,7 +624,7 @@ class ArrayFunctionsMixin(JmespathFunctionsBase):
     @functions.signature(
         {'types': ['array']},
         {'types': ['array']},
-        {'types': ['null', 'string'], 'optional': True},  # type: ignore
+        {'types': ['null', 'string'], 'optional': True},
     )
     def _func_zip_to_objects(
         self,

@@ -2,7 +2,7 @@
 
 from urllib.parse import quote
 
-from ..input.field_type.sensitive import Sensitive  # type: ignore
+from ..input.field_type.sensitive import Sensitive
 
 
 def proxies(
@@ -30,7 +30,7 @@ def proxies(
         if proxy_user is not None and proxy_pass is not None:
             proxy_user = quote(proxy_user, safe='~')
             if isinstance(proxy_pass, Sensitive):
-                proxy_pass_ = quote(proxy_pass.value, safe='~')  # type: ignore
+                proxy_pass_ = quote(proxy_pass.value, safe='~')
             else:
                 proxy_pass_ = quote(proxy_pass, safe='~')
 

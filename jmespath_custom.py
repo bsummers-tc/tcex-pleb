@@ -36,7 +36,7 @@ class TcFunctions(
         for i in range(min(len(signature), len(actual))):
             allowed_types = signature[i]['types']
             if allowed_types:
-                self._type_check_single(actual[i], allowed_types, function_name)  # type: ignore
+                self._type_check_single(actual[i], allowed_types, function_name)
 
     def _validate_arguments(self, args: list, signature: tuple, function_name: str):
         """Check the provided args match the signature type, taking into account optional args."""

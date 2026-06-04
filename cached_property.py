@@ -16,10 +16,10 @@ class cached_property(functool_cached_property, Generic[R]):  # noqa: N801
         """Initialize instance properties."""
         super().__init__(func)
 
-    def __get__(self, instance, owner=None) -> R:  # type: ignore
+    def __get__(self, instance, owner=None) -> R:
         """Override method."""
         self.instances.append(instance)
-        return super().__get__(instance, owner)  # type: ignore
+        return super().__get__(instance, owner)
 
     @staticmethod
     def _reset():
