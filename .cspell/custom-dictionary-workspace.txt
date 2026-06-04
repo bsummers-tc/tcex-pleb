@@ -3,4 +3,3 @@ autofix
 codespell
 functool
 maxsplit
-pyright

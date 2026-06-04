@@ -16,7 +16,8 @@ class cached_property(functool_cached_property, Generic[R]):  # noqa: N801
         """Initialize instance properties."""
         super().__init__(func)
 
-    def __get__(self, instance, owner=None) -> R:
+    # intentional, correct-by-design stricter override (returns R instead of cached_property)
+    def __get__(self, instance, owner=None) -> R:  # ty: ignore[invalid-method-override]
         """Override method."""
         self.instances.append(instance)
         return super().__get__(instance, owner)

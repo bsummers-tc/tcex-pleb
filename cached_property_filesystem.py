@@ -141,7 +141,7 @@ class cached_property_filesystem(Generic[R]):  # noqa: N801
             Returns:
                 The cached or freshly computed value.
             """
-            # using wrapped args to support typing hints in PyRight
+            # using wrapped args to support typing hints in the type checker
             wrapped: Callable = wrapped_args[0]
             instance: Any = wrapped_args[1]
             args: list = wrapped_args[2] if len(wrapped_args) > 1 else []
